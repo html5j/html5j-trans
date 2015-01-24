@@ -1,0 +1,14 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "ejs": "*",
+    "express": "3.1.0",
+    "ntwitter": "^0.5.0",
+    "ws": "^0.7.0"
+  }
+}
