@@ -8,7 +8,10 @@ $ npm install
 $ cd conf
 $ cp twitter.conf.smpl twitter.conf
 // edit twitter.conf
+$ node app
 ```
+
+then... access to http://localhost:3000/tweet.html
 
 ## twitter.conf
 
