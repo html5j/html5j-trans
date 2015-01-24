@@ -15,7 +15,7 @@ then... access to http://localhost:3000/tweet.html
 
 ## twitter.conf
 
-Create twitter.conf form twitter.conf.smpl for your setting!
+create twitter.conf from twitter.conf.smpl. then tweak it with your environment.
 ```
 $ cat conf/twitter.conf.smpl
 { "track" : "#nowplaying",
