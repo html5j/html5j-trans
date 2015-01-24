@@ -12,6 +12,19 @@ $ cp twitter.conf.smpl twitter.conf
 
 ## twitter.conf
 
+Create twitter.conf form twitter.conf.smpl for your setting!
+```
+$ cat conf/twitter.conf.smpl
+{ "track" : "#nowplaying",
+  "keys": { 
+    "consumer_key": "xx",
+    "consumer_secret": "xx",
+    "access_token_key": "xx",
+    "access_token_secret": "xx"
+  }
+}
+```
+
 * track
   * track keyword
 

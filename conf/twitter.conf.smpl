@@ -1,8 +1,8 @@
 { "track" : "#nowplaying",
-  "keys": { /* https://apps.twitter.com/ */
-    consumer_key: 'xx',
-    consumer_secret: 'xx',
-    access_token_key: 'xx',
-    access_token_secret: 'xx'
+  "keys": { 
+    "consumer_key": "xx",
+    "consumer_secret": "xx",
+    "access_token_key": "xx",
+    "access_token_secret": "xx"
   }
 }
