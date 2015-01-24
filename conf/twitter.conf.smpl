@@ -1,5 +1,5 @@
 { "track" : "#nowplaying",
-  "keys": { /* https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore */
+  "keys": { /* https://apps.twitter.com/ */
     consumer_key: 'xx',
     consumer_secret: 'xx',
     access_token_key: 'xx',
