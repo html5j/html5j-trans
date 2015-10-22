@@ -8,7 +8,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , WSServer  = require('ws').Server
-  , fs = require('fs')
+  , conf = require('./conf/twitter.conf')
 
 var app = express();
 var httpServer =  http.createServer(app);
@@ -16,7 +16,7 @@ var wss = new WSServer({ server : httpServer });
 
 var twitter = require('ntwitter');
 
-var conf = JSON.parse(fs.readFileSync(__dirname + "/conf/twitter.conf"));
+// var conf = JSON.parse(fs.readFileSync(__dirname + "/conf/twitter.conf"));
 
 var tw = new twitter({
   consumer_key: conf.keys.consumer_key,
