@@ -6,9 +6,12 @@
     "start": "node app"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
     "ejs": "*",
     "express": "3.1.0",
+    "log4js": "^0.6.27",
     "ntwitter": "^0.5.0",
+    "request": "^2.65.0",
     "ws": "^0.7.0"
   }
 }

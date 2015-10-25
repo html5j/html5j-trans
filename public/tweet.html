@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>translated result for the session (#html5j-ej)</title>
+    <title>automatic translator for international meetup</title>
     <link rel="stylesheet" href="/bootstrap-3.3.2-dist/css/bootstrap.min.css">
     <script src="/javascripts/jquery-2.1.3.min.js"></script>
 
@@ -15,6 +15,12 @@
       .tweet {
         margin-left: 70px;
       }
+
+      p .text {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
       .clearfix {
         clear: both;
       }
@@ -24,8 +30,13 @@
     <div class="container">
       <header class="page-header">
       <h1>function e2j(thisSession) { ... }</h1>
-      <p class="lead">hashtag :=&gt; <strong>#html5j-e2j</strong></p>
+      <p class="lead">hashtag :=&gt; <strong><span class="track">@@@</span></strong></p>
       </header>
+      <form id="form-track">
+        <label>track<input type="text" name="track-name" class="track"></label>
+        <button type="submit">update</button>
+      </form>
+
       <div id="tweets">
         <ul class="list-unstyled"></ul>
       </div>
@@ -36,12 +47,47 @@
 
     <script>
       var ws = new WebSocket("ws://" + location.hostname + ":" + location.port);
+
+      ws.onopen = function() {
+        $.getJSON("/track", function(json) {
+          $(".lead .track").text(json.track);
+          // $("form .track").val(json.track);
+        });
+      }
+
       ws.onmessage = function(ev) {
         var mesg = JSON.parse(ev.data);
-        var $li = $("<li>").html("<div class='well'><div class='icon'><img src='" + mesg.user + "'></div><div class='tweet'>" + mesg.text + "</div><div class='clearfix'></div>");
 
-        $("#tweets ul").prepend($li);
+        switch(mesg.type) {
+        case "tweet":
+          var $li = $("<li>").html("<div class='well'><div class='icon'><img src='" + mesg.data.user + "'></div><div class='tweet'><p><b>" + mesg.result.source.lang + "</b> <span class='text'>" + mesg.result.source.text + "</span></p><p><b>" + mesg.result.target.lang + "</b> <span class='text'>" + mesg.result.target.text + "</span></p></div><div class='clearfix'></div>");
+
+          $("#tweets ul").prepend($li);
+          break;
+        case "track":
+          console.log(mesg);
+          $(".lead .track").text(mesg.data.name);
+          $("form .track").val(mesg.data.name);
+          break;
+        default:
+          console.log("unknown type : " + mesg.type);
+        }
       }
+
+      $("form#form-track").submit(function(ev){
+        ev.preventDefault();
+
+        var name_ = $(this).find("input[name='track-name']").val();
+
+        $.ajax("/track", {
+          "method": "put",
+          "data": {"name": name_},
+          "success": function(ev) {
+            console.log("update track completed");
+          }
+        });
+
+      });
     </script>
   </body>
 </html>
